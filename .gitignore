@@ -1,0 +1,9 @@
+node_modules
+coverage
+dist
+scrap
+plugins/*
+
+.git-*
+!plugins/package.json
+

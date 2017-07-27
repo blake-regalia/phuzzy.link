@@ -1,0 +1,84 @@
+doctype html
+html(lang='en')
+	head
+		title 💥.🔗 phuzzy.link
+		link(rel='stylesheet', type='text/css', href='/style/explore.css')
+		script(src='/script/explore.js')
+	body
+		#title
+			a(href='/') phuzzy.link
+		#controls
+			div.configs
+				div.sparql
+					div.endpoint
+						div.title
+							span.text SPARQL endpoint URL:
+						div.input
+							input(type='text').url
+					div.prefixes
+						div.title
+							span.text Prefix JSON-LD context:
+						div.input
+							input(type='text').url
+				div.settings
+					div.title
+						span.text Settings:
+				div.plugins
+					div.title
+						span.text Plugins:
+			div.status
+				div.error
+				div.overview
+					div.outgoing
+						span.title Outgoing properties
+						span.text Waiting for initialization...
+					div.incoming
+						span.title Incoming properties
+						span.text Waiting for initialization...
+		#layout
+			section#triples
+				.outgoing
+					.header
+						a.fa.fa-external-link(target='_blank', title='open resource in new tab', href='#')
+						span.text
+						span.source
+							span.access
+								span.text RDF source
+								span.icon.fa.fa-code
+							span.spinner
+								span.icon.fa.fa-spin.fa-circle-o-notch
+					#machine.hide
+						div#rdf-format
+							div.graphy
+								div.title Generate from SELECT results
+								div.formats
+									div.format(data-mime-format='text/turtle') text/turtle
+									div.format(data-mime-format='application/trig') application/trig
+									div.format(data-mime-format='application/n-triples') application/n-triples
+									div.format(data-mime-format='application/n-quads') application/n-quads
+							div.dereference
+								div.title Dereference URI
+								div.formats
+									div.format(data-mime-format='text/turtle') text/turtle
+									//- div.format(data-mime-format='application/trig') application/trig
+									div.format(data-mime-format='application/n-triples') application/n-triples
+									//- div.format(data-mime-format='application/n-quads') application/n-quads
+									div.format(data-mime-format='application/ld+json') application/ld+json
+									div.format(data-mime-format='application/rdf+xml') application/rdf+xml
+									div.append
+										span.add.fa.fa-plus-square-o
+										input(type='text', placeholder='text/n3')
+						div#rdf-display
+							div#rdf-editor
+							div.page
+							div.curtain
+								div.loading
+									span.fa.fa-spin.fa-3x.fa-link
+					#abstract
+					.body
+						.table
+				.incoming
+					.header
+						span.text Incoming Triples
+					.body.incoming
+						.table
