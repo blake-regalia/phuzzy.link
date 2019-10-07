@@ -1,0 +1,1052 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>LD Connect - IOS Press</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <!-- <link rel="stylesheet" media="screen and (max-width: Xpx) and (min-width: Ypx)" href="style.css" /> -->
+
+  <link rel="shortcut icon" href="./favicon.png">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans:400,700%7CPT+Serif:400,700" />
+  <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/circleButton.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://d3js.org/d3-scale.v2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.5/d3-legend.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
+  <!-- <script src="./keyword-graph/categories/sparql.js"></script> -->
+  <script src="./js/keywordGraph.js"></script>
+  <?xml version="1.0" encoding="utf-8"?>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116918494-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-116918494-1');
+  </script>
+  <script type='text/javascript'>
+    var downloadEmbedCaptchaContainer;
+    var feedbackCaptchaContainer;
+    var downloadDataCaptchaContainer;
+    var stayInformedCaptchaContainer;
+    var loadCaptcha = function () {
+      downloadEmbedCaptchaContainer = grecaptcha.render('download_embeddings_captcha_container', {
+        'sitekey': '6LdYL1cUAAAAAAOMhMa_Q4i_Hy_UYs-C_pzCPDhs',
+        'size': 'invisible',
+        'callback': function (response) {
+          if (response != '') {
+            downloadEmbedFormSubmit();
+          }
+        }
+      });
+      downloadDataCaptchaContainer = grecaptcha.render('download_captcha_container', {
+        'sitekey': '6LdYL1cUAAAAAAOMhMa_Q4i_Hy_UYs-C_pzCPDhs',
+        'size': 'invisible',
+        'callback': function (response) {
+          if (response != '') {
+            downloadDataFormSubmit();
+          }
+        }
+      });
+      feedbackCaptchaContainer = grecaptcha.render('feedback_captcha_container', {
+        'sitekey': '6LdYL1cUAAAAAAOMhMa_Q4i_Hy_UYs-C_pzCPDhs',
+        'size': 'invisible',
+        'callback': function (response) {
+          if (response != '') {
+            feedbackFormSubmit();
+          }
+        }
+      });
+      stayInformedCaptchaContainer = grecaptcha.render('stay_informed_captcha_container', {
+        'sitekey': '6LdYL1cUAAAAAAOMhMa_Q4i_Hy_UYs-C_pzCPDhs',
+        'size': 'invisible',
+        'callback': function (response) {
+          if (response != '') {
+            stayInformedFormSubmit();
+          }
+        }
+      });
+    };
+  </script>
+
+</head>
+
+<body>
+  <!-- <div id="load"></div> -->
+  <!-- <header>
+        <div class="container">
+            <div class="left_container col-sm-6">
+                <ul>
+                    <!-- <li><img src="images/stko.png" class="logo" /></li>
+                    <li>
+                        <a href="/"><img src="images/IOS_Logo_white_RGB.png" class="logo" /></a>
+                    </li>
+                    <!-- <li class="site_name italic">
+                    <h1 class="strong">IOS</h1>
+                    <p>P r e s s</p>
+                </li>
+                    <li class="site_caption">
+                        <p>IOS Press Linked Data</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="right_container col-sm-6">
+                <ul class="site_menu">
+                    <li><a href="http://iospress.com/" target="_blank">iospress.com</a></li>
+                    <li><a href="#feedback">Feedback</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>  -->
+
+  <header id="header" class="header block">
+    <a href="#nav-skiplink" class="skiplinks" id="header-skiplink">In header section. Select this link to jump to navigation
+    </a>
+    <div class="container">
+      <div class="left_container col-sm-6 header-mobile-menu" style="padding-left: 0px;">
+        <ul>
+          <li style="padding-left: 0px;">
+            <a href="/">
+              <img src="images/LD_Connect_logo.png" class="logo" />
+            </a>
+          </li>
+          <!-- <li class="site_caption">
+                        <p class="site">IOS Press Linked Data</p>
+                    </li> -->
+        </ul>
+        <a class="mobile-menu" id="open-menu">
+          <div class="hamburger-menu-container" onclick="myFunction(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+          </div>
+        </a>
+        <script>
+          function toggle_menu(option) {
+            $('#open-menu .hamburger-menu-container').removeClass('change');
+            $('#menu').removeClass('show');
+            // if (option) {
+            //   window.location = 'php/downloadDataset.php?access=true';
+            //   window.setTimeout(function () {
+            //     $("#myModal").modal('show');
+            //   }, 5000);
+            // }
+          }
+        </script>
+      </div>
+      <div class="header-menu clearfix menu" id="menu" style="padding: 18px 0;">
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#About" onclick="toggle_menu(false)">About LD Connect</a>
+              </li>
+              <li>
+                <a href="http://ld.iospress.nl/license" target="_blank" onclick="toggle_menu(false)">License</a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="http://ld.iospress.nl/browse/#iospress-organization:Publisher.IOS_Press" target="_blank" onclick="toggle_menu(false)">Explore Dataset</a>
+              </li>
+              <li>
+                <a href="http://yasgui.org/short/YV941HkLw" target="_blank" onclick="toggle_menu(false)">Query Interface</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#downloadEmbeddings" onclick="toggle_menu(false)">Download Embeddings</a>
+              </li>
+              <li>
+                <a href="#downloadDataset" onclick="toggle_menu(false)">Download Dataset</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="mailto:editorial@iospress.nl" target="_blank" onclick="toggle_menu()">Contact us</a>
+              </li>
+              <li>
+                <a href="#feedback" onclick="toggle_menu()">Feedback</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </header>
+  <!-- <div>
+        <iframe src="/ldp-landing-page/keyword-graph" frameborder="0" style="width:100%; height:500px;"></iframe>
+    </div> -->
+  <div class="kg">
+    <!-- <svg width="1200" height="600"></svg> -->
+  </div>
+  <!-- <div class="jumbotron">
+
+        <div id="black"></div>
+
+        <div>
+            <div class="container">
+                <div class="col-md-12 slider_wrap">
+                    <p class="text">Welcome to the <b>IOS Press Linked Data</b> Platform</p>
+                </div>
+
+            </div>
+        </div>
+    </div> -->
+
+  <!-- <div class="container" id="count"> -->
+  <!-- <table width="100%">
+            <tr>
+                <td>
+                    <svg version="1.1" class="svg_image" xmlns="images/download-icon.svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve">
+                        <polygon class="st0" points="64,98.3 79.4,79.2 94.9,60 78,60 78,17 50,17 50,60 33.1,60 48.6,79.2 "/>
+                        <rect x="26" y="100" class="st0" width="76" height="12"/>
+                    </svg>
+                    <h1>Download <br/> Dataset</h1>
+                </td>
+                <td>
+                    <svg version="1.1" class="svg_image" xmlns="images/download-icon.svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve">
+                        <polygon class="st0" points="64,98.3 79.4,79.2 94.9,60 78,60 78,17 50,17 50,60 33.1,60 48.6,79.2 "/>
+                        <rect x="26" y="100" class="st0" width="76" height="12"/>
+                    </svg>
+                    <h1>Download <br/> Dataset</h1>
+                </td>
+            </tr>
+        </table> -->
+  <!-- <div class="row">
+            <a  href="http://ld.iospress.nl" style="text-decoration: none">
+                <div class="col-sm-4" id="explore">
+	                Explore <br/> Dataset
+	            </div>
+			</a>
+			<a data-toggle="modal" data-target="#myModalNorm" style="color:white;">
+                <div class="col-sm-4" id="download">
+                    Download<br/>Embeddings
+                </div>
+            </a>
+			<a target="_blank" href="http://ld.iospress.nl/query-interface/">
+                <div class="col-sm-2" id="query">
+				    Query<br/>Interface
+				</div>
+			</a>
+			<a data-toggle="modal" data-target="#myModal" style="color:white;">
+                <div class="col-sm-2" id="dataset">Download <br/> Dataset</div>
+			</a>
+        </div>
+    </div> -->
+  <div style="background-color: #F5F5F5;">
+
+    <div id="wrapper">
+      <a target="_blank" href="http://ld.iospress.nl/browse/#iospress-organization:Publisher.IOS_Press" style="text-decoration: none; color:white; cursor: pointer;">
+        <div id="yourdiv" style="background: #1b699e;">
+          <span>Explore
+            <br>Dataset</span>
+        </div>
+      </a>
+      <a href="#downloadEmbeddings" style="color:white; cursor: pointer;">
+        <div id="yourdiv" style="background: #4e8cbb;">
+          <span>Download
+            <br>Embeddings</span>
+        </div>
+      </a>
+      <a target="_blank" href="http://yasgui.org/short/YV941HkLw" style="color:white; cursor: pointer;">
+        <div id="yourdiv" style="background: #dbb105;">
+          <span>Query
+            <br>Interface</span>
+        </div>
+      </a>
+      <a style="color:white; cursor: pointer;" href="#downloadDataset">
+        <div id="yourdiv" style="background: #515352;">
+          <span>Download
+            <br>Dataset</span>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="modal fade" id="myModalNorm">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h3 class="modal-title" id="myModalLabel">
+            <strong style="text-transform: initial;">Thank you. Your download has started.</strong>
+          </h3>
+          <!-- <p>Please let us know what you think, so we can further improve our linked data platform!</p> -->
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+
+          <form method="post" id="download-embeddings-form" name="downloadEmbeddingsForm">
+            <div class="row">
+              <p>
+                Please leave your name and email if you would like to stay informed about updates or new releases of LD Connect.
+              </p>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6">
+                <!-- <label for="inputName">Name</label> -->
+                <input type="text" class="form-control" id="downEmbedName" placeholder="Name/Organization" required/>
+              </div>
+              <div class="form-group col-sm-6">
+                <!-- <label for="inputEmail">Email address</label> -->
+                <input type="email" class="form-control" id="downEmbedEmail" placeholder="Email" required/>
+              </div>
+            </div>
+            <!-- <div class="row">
+              <div class="form-group col-sm-6">
+                <label for="subject">Subject</label>
+                <select class="form-control" id="embeddingOptions" required>
+                  <option value="" selected disabled>CHOOSE TYPE</option>
+                  <option>IOS-Doc2Vec.zip</option>
+                  <option>IOS-Doc2Vec-TXT.zip</option>
+                </select>
+              </div>
+            </div> -->
+            <div class="row">
+              <p>
+                We are excited to see where our data ends up and are very open to hear your feedback as well as any collaboration opportunities.
+                <br> Please leave us a message and we will get back to you asap.
+              </p>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <!-- <label for="comments">Comments</label> -->
+                <textarea class="form-control textarea comment" id="embed-comments" placeholder="Tell us about your project or share your feedback."
+                  value="" required></textarea>
+              </div>
+            </div>
+            <div id="download_embeddings_captcha_container"></div>
+            <div class="row Embedding">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <input type="hidden" id="embed-type">
+                  <input class="btn btn-primary embed" id="downloadEmbeddingsBtn" type="submit" value="Submit" />
+                </div>
+              </div>
+              <div class="col-sm-4 line">
+                <a href="./license/index.html" id="licence-text">License</a>
+              </div>
+              <div class="col-sm-4 line1">
+                <a href="#model" id="more">More Info</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h3 class="modal-title" id="myModalLabel">
+            <strong style="text-transform: initial;">Thank you. Your download has started.</strong>
+          </h3>
+          <!-- <p>Please let us know what you think, so we can further improve our linked data platform!</p> -->
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+
+          <form method="post" id="download-form" name="downloadForm">
+            <div class="row">
+              <p>
+                Please leave your name and email if you would like to stay informed about updates or new releases of LD Connect.
+              </p>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6">
+                <!-- <label for="inputName">Name</label> -->
+                <input type="text" class="form-control" id="downName" placeholder="Name/Organization" required/>
+              </div>
+              <div class="form-group col-sm-6">
+                <!-- <label for="inputEmail">Email address</label> -->
+                <input type="email" class="form-control" id="downEmail" placeholder="Email" required/>
+              </div>
+            </div>
+            <div class="row">
+              <p>
+                We are excited to see where our data ends up and are very open to hear your feedback as well as any collaboration opportunities.
+                <br>Please leave us a message and we will get back to you asap.
+              </p>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <!-- <label for="comments">Comments</label> -->
+                <textarea class="form-control textarea comment" id="dataset-comments" placeholder="Tell us about your project or share your feedback."
+                  value="" required></textarea>
+              </div>
+            </div>
+            <div id="download_captcha_container"></div>
+            <div class="row Dataset">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <input class="btn btn-primary data" id="downloadDatasetBtn" type="submit" value="Submit" />
+                </div>
+              </div>
+              <div class="col-sm-4 licencelink">
+                <a href="./license/index.html" id="license">License</a>
+              </div>
+              <div class="col-sm-4 morelink">
+                <a href="#Info" id="moreInfo">More Info</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="container side_text welcome_text" id="About">
+
+    <h1 class="portal_text">
+      <strong>Welcome To LD Connect,</strong>
+      <br/>
+      <strong>Our Linked Data Portal</strong>
+    </h1>
+    <p style="font-style: italic;">
+      Note: This project is in BETA, if you have any feedback, please don't hesitate to
+      <a href="http://ld.iospress.nl/#feedback">get back to us.</a>
+
+    </p>
+
+    <!--<h2><strong>About IOS Press Linked Data</strong></h2>-->
+    <p>
+      IOS Press is pleased to welcome you to the BETA release of LD Connect, its linked data portal. This portal contains linked
+      metadata of all IOS Press books and journals.
+    </p>
+    <p>
+      We invite you to explore the data through our
+      <a href="http://ld.iospress.nl/browse/#iospress-organization:Publisher.IOS_Press" target="_blank">data browser</a>, download our
+      <a href="http://ld.iospress.nl/#downloadDataset" target="_blank">entire dataset</a> or just subsets, download our
+      <a href="http://ld.iospress.nl/#downloadEmbeddings" target="_b
+        ">word embeddings</a> trained on the full text of all IOS Press publications or use the
+      <a href="http://yasgui.org/short/YV941HkLw" target="_blank">SPARQL endpoint search box</a> on this platform.
+    </p>
+    <p>
+      Would you like to see our data connected to yours or use our dataset to power one of your applications? We are very open
+      to collaborations and love to hear about your project. Please
+      <a href="mailto:editorial@iospress.nl" target="_top">email us</a> or
+      <a href="http://ld.iospress.nl/#feedback" target="_blank">fill in the form</a> below and we will get back to you at our earliest convenience.
+    </p>
+  </div>
+  <div style="background-color: #F5F5F5;">
+    <div class="container side_text" id="About">
+      <h2>
+        <strong>What Is Linked Data?</strong>
+      </h2>
+      <p>Linked data is a method of publishing structured data on the Web in a human and machine readable way, thereby breaking
+        apart data silos and fostering the interlinking of data.</p>
+      <p>It builds upon standardized Web technologies such as HTTP, RDF and URIs, but rather than using them to serve web pages
+        for human readers, it extends them to share information in a way that can be read and understood automatically by
+        computers.
+      </p>
+      <!--<p id="link">https://nl.wikipedia.org/wiki/Linked_data</p>-->
+      <p>Tim Berners-Lee coined the term in 2006 and described the following principles:</p>
+      <ol class="list">
+        <li>Use URIs as names for things.</li>
+        <li>Use HTTP URIs so that people can look up those names.</li>
+        <li>When someone looks up a URI, provide useful information, using the standards (RDF*, SPARQL).</li>
+        <li>Include links to other URIs so that they can discover more things.</li>
+      </ol>
+      <p id="link">
+        To read more about linked data, please click
+        <a style="text-decoration:none;" href="https://www.w3.org/DesignIssues/LinkedData.html" target="_blank">here</a>.
+      </p>
+      <p>
+        Semantic Web technologies and ontologies, i.e., formal vocabularies, provide the means to
+        <a href="https://www.w3.org/standards/semanticweb/query" target="_blank">query</a> that data, draw
+        <a href="https://www.w3.org/standards/semanticweb/inference" target="_blank">inferences</a> using
+        <a href="https://www.w3.org/standards/semanticweb/ontology" target="_blank">vocabularies</a>, and combine data across different sources. To make the Web of Data a reality, it is important to
+        have the data available in a standard format, reachable and manageable by Semantic Web tools as well as to link to
+        other data. This collection of interrelated datasets on the Web can also be referred to as linked data.
+      </p>
+      <p>For example, metadata about research articles can be published as linked data together with data about authors, their
+        affiliations, and so forth. Links between these data, enable queries such as for all authors across different journals
+        that work on Alzheimer's disease. Next, establishing links between different datasets makes it possible to integrate
+        these bibliographic data with a wide variety of other data such as from demographic datasets, e.g., to establish
+        a relationship between the affiliation of a research team, the research topic, and the region studied in their work.
+      </p>
+
+    </div>
+  </div>
+
+  <div class="container side_text" id="About">
+    <h2>
+      <strong>Why Linked Data?</strong>
+    </h2>
+    <div class='container2'>
+      <blockquote style="padding:0px; border-left:none;">
+        <!-- <div>
+          <img src='images/einar-fredriksson.jpg' class='iconDetails'>
+        </div> -->
+        <div class="quote">
+          <p>As a science publishing house operating in an era of digital transformation, we felt it was imperative for us to
+            apply best practices to all aspects of our workflow. The potential of linked data is not lost on us. By offering
+            our datasets in machine-readable form to third parties and semantic tools, we hope to contribute in a meaningful
+            way to scientific progress.
+          </p>
+          <small>Dr. Einar Fredriksson, founder and director of IOS Press</small>
+        </div>
+      </blockquote>
+    </div>
+    <p>The un-siloing of data leads to improved retrieval, accessibility, reusability, and interoperability. Structured data
+      can be searched, shared, reused, data mined and linked to other data sources. Contextual relations between authors,
+      institutions and research areas can be made visible. Downstream applications such as abstracting and indexing databases
+      can use the data portal to ensure their own datastores are always up to date with latest research published by IOS
+      Press. Furthermore, authors who publish their work with IOS Press can do so under the assurance that their work is
+      disseminated through both human and and machine accessible channels and following web-friendly standards.</p>
+    <p>The portal currently contains millions of triples, i.e., individual statements, and maps connections between metadata
+      of journal articles, book chapters, authors, affiliations, keywords and other bibliographic metadata to provide a complete
+      ecosystem of the IOS Press scholarly relationships.</p>
+
+    <p>More statistics on the current number of data can be found below. New data is continuously added and new data points
+      will also be added to further enrich the portal. Tools that visualize the data for human consumption as well as tools
+      for knowledge mining include a visual linked
+      <a href="http://ld.iospress.nl/browse/#iospress-organization:Publisher.IOS_Press" target="_blank">data browser</a>, a
+      <a href="http://ld.iospress.nl/sparql" target="_blank">SPARQL query endpoint</a>, and a
+      <a href="http://yasgui.org/short/YV941HkLw" target="_blank">visual query interface</a>. Further tools, e.g., for semantic search, are in development.</p>
+
+
+    <p>The linked data portal was developed in collaboration with
+      <a style="text-decoration:none;" href="http://stko.geog.ucsb.edu" target="_blank">STKO Lab</a> in Santa Barbara, CA, USA.</p>
+  </div>
+
+  <div style="background-color: #F5F5F5;">
+    <div class="container side_text" id="downloadDataset">
+      <h2>
+        <strong id="Info">Information About Our Data</strong>
+      </h2>
+      <p>We spent a considerable amount of time cleaning up our data and constructing a conversion pipeline to transform all
+        IOS Press article and book metadata to RDF-based linked data.</p>
+      <p>We use the
+        <a href="http://bibliontology.com" target="_blank">Bibo Ontology</a> and web standards extensively while describing our data, in order to make our data even more discoverable,
+        accessible, linkable and interoperable with other datasets. The affiliations are geocoded and authors as well as
+        affiliations are disambiguated using our co-reference resolution script. With the help of machine learning techniques,
+        the data conversion pipeline keeps on improving the more data are added. Co-reference resolution was developed in
+        collaboration with the
+        <a href="http://dase.cs.wright.edu/" target="_blank">DaSe Lab</a> at Wright State University.
+      </p>
+      <p>Our datasets contain a.o. metadata of journal articles, volumes, issues, book chapters, published dates, ISSNs, DOIs,
+        authors, affiliations, keywords, pages and abstracts.</p>
+      <p>The most recent release of the dataset is April 2018, the next release is scheduled for October 2018. </p>
+      <p>The compressed dataset is around 117MB, unpacked around 510MB.</p>
+      <!-- <div class="row bibo_text">
+        <div class="col-sm-6">
+          <h3>
+            <strong>List of Bibliographic Entities Used</strong>
+          </h3>
+          <ul class="list">
+            <li>foaf:Person</li>
+            <li>foaf:Organization</li>
+            <li>bibo:AcademicArticle</li>
+            <li>bibo:Chapter</li>
+            <li>bibo:Periodical</li>
+            <li>prov:Publisher</li>
+            <li>bibo:Journal</li>
+            <li>bibo:Issue</li>
+            <li>bibo:Series</li>
+            <li>rdf:Seq</li>
+
+          </ul>
+        </div>
+        <div class="col-sm-6 predicate_text">
+          <h3>
+            <strong>List of Predicates Used</strong>
+          </h3>
+          <ul class="list">
+          <li>dcterms:publisher</li>
+          <li>rdf:type</li>
+          <li>rdfs:label</li>
+          <li>owl:sameAs</li>
+          <li>dct:subject</li>
+          <li>dc:creator</li>
+          <li>dcterms:hasPart</li>
+          <li>dc:title</li>
+          <li>dcterms:subject</li>
+          <li>bibo:issn</li>
+          <li>dcterms:isPartOf</li>
+          <li>bibo:volume</li>
+          <li>dcterms:created</li>
+          <li>dcterms:identifier</li>
+          <li>bibo:abstract</li>
+          <li>bibo:authorList</li>
+          <li>bibo:doi</li>
+          <li>bibo:pageEnd</li>
+          <li>bibo:pageStart</li>
+          <li>foaf:familyName</li>
+          <li>foaf:givenName</li>
+          <li>foaf:member</li>
+          <li>foaf:name</li>
+          <li>schema:addressCountry</li>
+          <li>geo:lat</li>
+          <li>geo:long</li>
+
+          </ul>
+        </div>
+      </div>
+      <p></p> -->
+      <div class="form-group row download-row" id="">
+        <div class="col-md-6 col-md-offset-3">
+          <input onclick="downloadDataset()" type="button" class="btn form-control btn-default-lp" id="btn1" value="Download Dataset"
+            style="background: #515352;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container side_text" id="downloadEmbeddings">
+    <h2>
+      <strong id="model">Pre-trained Doc2Vec Models</strong>
+    </h2>
+    <p>The two files linked below contain pre-trained Doc2Vec models of all English journal articles and book chapters published
+      by IOS Press over the years and are based on their full-text content, not just abstracts. In total, the dataset used
+      was made up of >120000 papers, all of them are also matched to entities in the
+      <a href="http://ld.iospress.nl/browse/#iospress-organization:Publisher.IOS_Press" target="_blank" style="text-decoration: none;">IOS Knowledge Graph</a>. The corresponding word embedding model has a vocabulary size of 95888. The embedding dimension
+      of both of these two models is 200. The Doc2Vec model is trained using the Python gensim@3.3.0 library.</p>
+    <ol class="list">
+      <li>
+        "IOS-Doc2Vec.zip" can be loaded directly into the gensim library.</li>
+      <li>
+        "IOS-Doc2Vec-TXT.zip" contains the Doc2Vec model and its corresponding Word2Vec model as plain-text files (“doc2vec.txt”,
+        “w2v.txt”). The “doc2vec_voc.txt” contains a list of all the paper entity URLs of the Doc2Vec model. The “w2v_voc.txt”
+        contains a list the word vocabulary of the corresponding word2Vec model. This version can, therefore, be used to
+        work that required a direct integration with the IOS knowledge graph.</li>
+    </ol>
+    <p>Word2Vec model as plain-text files (“doc2vec.txt”, “w2v.txt”). The “doc2vec_voc.txt” contains a list of all the paper
+      entity URLs of the Doc2Vec model. The “w2v_voc.txt” contains a list the word vocabulary of the corresponding word2Vec
+      model. This version can, therefore, be used for work that requires a direct integration with the IOS knowledge graph.</p>
+    <p>For questions, please contact - Krzysztof Janowicz at janowicz-at-ucsb.edu.</p>
+    <p>The compressed Doc2Vec is around 230MB, unpacked around 270MB. The compressed Doc2Vec-TXT is around 180MB, unpacked around
+      410MB.
+    </p>
+    <div class="form-group row download-row" id="downloadEmbeddings">
+      <div class="col-md-6 download-emb-col">
+        <input onclick="downloadEmbeddings('IOS-Doc2Vec.zip')" type="button" class="btn form-control btn-default-lp" id="btn1" value="Download Doc2Vec">
+      </div>
+      <div class="col-md-6">
+        <input onclick="downloadEmbeddings('IOS-Doc2Vec-TXT.zip')" type="button" class="btn form-control btn-default-lp" id="btn2"
+          value="Download Doc2Vec-TXT">
+      </div>
+    </div>
+    <!--     <p>The Knowledge Graph maps connections between Authors, Articles, Keywords, Affiliations and other factors to provide a complete ecosystem of IOS Press Scholarly relationships.</p>
+                <h3>Use Cases</h3>
+                <ul class="list">
+                <li>Used to power hackathons.</li>
+                <li>Used to build navigation patterns through the data.</li>
+                <li>Power community portals, journal websites and scientometrics applications.</li>
+                <li>Query expansion interfaces.</li>
+                </ul>
+        -->
+  </div>
+  <div style="background-color: #F5F5F5;">
+    <div class="container side_text" id="kgEmbeddings">
+      <h2>
+        <strong id="model">IOS Knowledge Graph Embedding</strong>
+      </h2>
+      <p>
+        The IOS Knowledge Graph (KG) Embedding files are trained on the IOS Knowledge Graph by using the TransE algorithm. The algorithm
+        utilizes each triple with object properties to training an embedding model for each entity and each predicate in
+        the KG. As for a triple &lt;s, p, o&gt;, TransE learns k-dimensional embeddings for the entity s, o as well as relation
+        p to make s + p aproximately zero.
+      </p>
+      <ul class="unleashing-list">
+        <li>
+          entity_sameAs_merge_mapping_iri.txt: Note that before we train TransE on the IOS KG, we first perform entity conflation based
+          on owl:sameAs relation. For all the entities connected by owl:sameAs, only one entity URL is selected to represent
+          the corresponding entity. This file contains the mapping between the original entity URL (1st conlumn) to this
+          conflated URL (2nd conlumn).
+        </li>
+        <li>
+          TransE_ent.txt: The embedding for every conflated entity in the IOS KG. The first line is the number of entities and the
+          embedding dimension (50). As for the rest, each line begins with the entity URL which is followed by its embedding.
+        </li>
+        <li>
+          TransE_relation.txt: The embedding for every predicate in the IOS KG. The file format is the same as TransE_ent.txt.
+        </li>
+      </ul>
+      <p>
+        Note TransE_ent.txt and TransE_relation.txt follows the word embedding format defined by python’s gensim package.
+      </p>
+      <p>
+        For questions, please contact - Krzysztof Janowicz at janowicz-at-ucsb.edu.
+      </p>
+      <p>
+        The compressed KG Embedding is around 162MB, unpacked around 470MB.
+      </p>
+      <div class="form-group row download-row" id="">
+        <div class="col-md-6 col-md-offset-3">
+          <input onclick="downloadEmbeddings('IOS_KG_Embedding.zip')" type="button" class="btn form-control btn-default-lp" id="btn1"
+            value="Download KG Embedding">
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="container side_text unleashing" id="About">
+
+    <h2>
+      <strong>Unleashing The Potential</strong>
+    </h2>
+    <p>Providing machine-readable, interlinked metadata that is publicly available opens up a wide range of opportunities.
+    </p>
+    <p>On the one hand we offer our linked data to the public, so it can enrich third party datasets, further unsilo research
+      data, and incentivize new discoveries.</p>
+    <p>On the other hand we are currently working on services and tools built on top of our linked data. Our tools can be used
+      to:
+    </p>
+
+    <ul class="unleashing-list">
+      <li>Improve the internal workflow, eg structured data storage and automated content update.</li>
+      <li>Improve our search functionality with the help of an advanced query expansion that also takes into account the related
+        search terms.</li>
+      <li>Assist the researcher in the search for knowledge, for example a discovery tool to find related papers as well as scientometric
+        applications to visualize, interpret and even discover new relationships.</li>
+    </ul>
+
+
+
+    <p>The possibilities are endless and we are only at the start of it. Connect your dataset to other datasets out there and
+      new potential is unleashed, time and again.</p>
+    <p>Would you like to see our data connected to yours or use our dataset to power one of your applications? We are very open
+      to collaborations and love to hear about your project. Please
+      <a href="mailto:editorial@iospress.nl" target="_top">email us</a> or
+      <a href="http://ld.iospress.nl/#feedback" target="_blank">fill in the form</a> below and we will get back to you at our earliest convenience.
+    </p>
+  </div>
+  <script>
+    jQuery(window).load(function () {
+      setTimeout(function () {
+        $('#load').remove()
+      }, 15000);
+    });
+
+
+    function loadDoc(url, cFunction) {
+      var xhttp;
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          cFunction(this);
+        }
+      };
+      xhttp.open("GET", url, true);
+      xhttp.send();
+    }
+
+    function articlesFunction(xhttp) {
+      var articles = JSON.parse(xhttp.responseText);
+      document.getElementById("articles").innerHTML = articles.results.bindings[0].count.value;
+    }
+
+    function authorsFunction(xhttp) {
+      var authors = JSON.parse(xhttp.responseText);
+      document.getElementById("authors").innerHTML = authors.results.bindings[0].count.value;
+    }
+
+    function triplesFunction(xhttp) {
+      var triples = JSON.parse(xhttp.responseText);
+      document.getElementById("triples").innerHTML = triples.results.bindings[0].count.value;
+    }
+
+    function hide() {
+      document.getElementById("myModalNorm").style.display = 'none';
+    }
+  </script>
+  <div class="count">
+    <div class="container" id="count1">
+      <h2 class="ld">LD Connect currently contains</h2>
+      <div class="row">
+        <div class="col-sm-4 data_class">
+          <p class="amount">
+            <!--120 263 -->
+            <div id="articles">
+              <!--<iframe style="display:none" onload="loadDoc('http://ld.iospress.nl:3030/ios/query?query=PREFIX+bibo%3A+%3Chttp%3A%2F%2Fpurl.org%2Fontology%2Fbibo%2F%3E%0D%0Aselect+%28count%28%3Fs%29+as+%3Fcount%29+where%7B%0D%0A%09%3Fs+a+bibo%3AAcademicArticle%0D%0A%7D', articlesFunction )"></iframe>-->
+              >120000
+            </div>
+          </p>
+          <p class="amount_text">Articles & Chapters</p>
+        </div>
+        <div class="col-sm-4 data_class authors">
+          <p class="amount">
+            <!--231 102 -->
+            <div id="authors">
+              <!--<iframe style="display:none" onload="loadDoc('http://ld.iospress.nl:3030/ios/query?query=PREFIX+foaf%3A+%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F%3E%0D%0APREFIX+owl%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%0D%0ASELECT+%28count%28%3Fitem_uri%29+as+%3Fcount%29%0D%0AWHERE+%7B%0D%0A++%3Fitem_uri+a++foaf%3APerson+.%0D%0A++OPTIONAL+%7B+%3Fitem_uri+owl%3AsameAs++%3Fparent+%7D%0D%0A++FILTER%28+%21bound%28+%3Fparent+%29+%29%0D%0A%7D', authorsFunction)"></iframe>-->
+              >250000
+            </div>
+          </p>
+          <p class="amount_text">Authors</p>
+        </div>
+        <div class="col-sm-4 data_class triples">
+          <p class="amount">
+            <!--5 884 762-->
+            <div id="triples">
+              <!--<iframe style="display:none" onload="loadDoc('http://ld.iospress.nl:3030/ios/query?query=select+%28count%28%3Fs%29+as+%3Fcount%29+where%7B%0D%0A%09%3Fs+%3Fp+%3Fo%0D%0A%7D', triplesFunction)"></iframe>-->
+              >6100000
+            </div>
+          </p>
+          <p class="amount_text">Triples</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="background-color: #F5F5F5;">
+
+    <div class="form-container" id="feedback">
+      <h1>Feedback form</h1>
+      <p>Please let us know what you think, so we can further improve our linked data platform!</p>
+      <br>
+      <form method="post" id="feedback-form" name="feedbackForm">
+        <div class="name">
+          <div class="form-group">
+            <!-- <label for="inputName">Name</label> -->
+            <input type="text" class="form-control" id="inputName" placeholder="Name" />
+          </div>
+          <div class="form-group">
+            <!-- <label for="inputEmail">Email address</label> -->
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email" required/>
+          </div>
+        </div>
+        <div class="name">
+          <div class="form-group">
+            <!-- <label for="subject">Subject</label> -->
+            <select class="form-control selectpicker" id="subject">
+              <option value="" selected disabled>Subject</option>
+              <option>Usability</option>
+              <option>Missing or New Data</option>
+              <option>Wrong Data</option>
+              <option>Suggestions</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <!-- <div class="form-group">
+            <label for="inputEmail">Email address</label>
+            <input type="text" class="form-control" id="inputUrl" placeholder="URL" />
+          </div> -->
+        </div>
+        <div class="form-group textarea-form-class">
+          <!-- <label for="comments">Comments</label> -->
+          <textarea class="form-control textarea" id="feedback-comments" rows="5" placeholder="Comments" value="" required></textarea>
+        </div>
+        <div id="feedback_captcha_container"></div>
+        <div class="form-group send">
+          <input class="btn btn-primary" id="submitBtn" type="submit" value="Send Feedback" />
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="licence Ld" id="licence">
+    <div class="container">
+      <form method="post" id="stay-informed-form" name="stayInformedForm">
+        <div class="row">
+          <div class="column licence_text">
+            <h4 class="side-text">Stay informed about LD Connect</h4>
+          </div>
+          <div id="stay_informed_captcha_container"></div>
+          <div class="column" id="email">
+            <input type="text" class="email" placeholder="Email" id="stayInformedEmail" required/>
+          </div>
+          <div class="column staybtn">
+            <input class="btn btn-primary submit" id="stayInformedBtn" type="submit" value="Submit" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <footer class="footer footer-menu">
+    <div class="container" style="max-width:1200px;">
+      <div class="row">
+        <div class="col-xs-3 col-sm-3 left-one">
+          <div id="navigation">
+            <!-- <label>Navigation</label> -->
+            <ul class="site_menu" id="site">
+              <li>
+                <a href="#">
+                  <img src="images/LD_Connect_logo_withoutIOSPress.png" class="logo" />
+                </a>
+              </li>
+            </ul>
+            <ul class="disclaimer">
+              <li>
+                <p style="font-size:12px; text-align:center;">
+                  <a href="https://iospress.nl/" target="_blank">&copy; IOS Press | </a>
+                  <a href="http://ld.iospress.nl/license" target="_blank">Disclaimer</a>
+                </p>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+        <div class="col-xs-7 col-sm-7 middle-one">
+          <div id="text1">
+            <ul class="site_menu" id="site site_text">
+              <li>
+                <p class="ld-connect-text" style="line-height:1.4em;">
+                  <b>LD Connect</b> is the Linked Data Portal of all IOS Press books and journals. We invite you to explore
+                  or download our data and welcome your feedback!
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div id="text2">
+            <!-- <label>Text 2</label> -->
+            <div class="col-sm-3 site-map" style="padding:2px">
+              <ul>
+                <li>
+                  <strong>About</strong>
+                </li>
+                <li>
+                  <a href="http://ld.iospress.nl/#About">About LD Connect</a>
+                </li>
+                <li>
+                  <a href="./license" target="_blank">License</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-3 site-map" style="padding:2px">
+              <ul>
+                <li>
+                  <strong>Explore</strong>
+                </li>
+                <li>
+                  <a target="_blank" href="http://ld.iospress.nl/browse/#iospress-organization:Publisher.IOS_Press" style="text-decoration: none; cursor: pointer;">Explore Dataset</a>
+                </li>
+                <li>
+                  <a target="_blank" href="http://yasgui.org/short/YV941HkLw" style=" cursor: pointer;">Query Interface</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-3 site-map" style="padding:2px">
+              <ul>
+                <li>
+                  <strong>Download</strong>
+                </li>
+                <li>
+                  <a href="http://ld.iospress.nl/#downloadDataset" style="cursor: pointer;">Download Dataset</a>
+                </li>
+                <li>
+                  <a href="http://ld.iospress.nl/#downloadEmbeddings" style="cursor: pointer;">Download Doc2Vec</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-3 site-map" style="padding:2px">
+              <ul>
+                <li>
+                  <strong>Contact</strong>
+                </li>
+                <li>
+                  <a href="mailto:editorial@iospress.nl" style="cursor: pointer;">Contact Us</a>
+                </li>
+                <li>
+                  <a href="#feedback" style="cursor: pointer;">Feedback</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 right-one">
+          <div id="navigation">
+            <ul style="list-style:none; padding-top: 35px;">
+              <li style="float: none;">
+                <p class="powered-by">Powered by</p>
+              </li>
+            </ul>
+            <ul>
+              <li style="float: none;">
+                <img src="images/IOS_Logo_white_RGB.png" style="max-width: 55px;">
+              </li>
+            </ul>
+            <ul style="list-style:none;">
+              <li>Nieuwe Hemweg 6B</li>
+              <li>1013 BG Amsterdam</li>
+              <li>The Netherlands</li>
+            </ul>
+            <ul style="list-style:none;" class="social-links">
+              <li class="widget facebook" style="float: none;">
+                <a href="https://www.facebook.com/publisheriospress/" target="_blank" class="facebook">facebook</a>
+              </li>
+              <li class="widget twitter" style="float: none;">
+                <a href="https://twitter.com/iospress_stm" target="_blank" class="twitter">twitter</a>
+              </li>
+              <li class="widget linkedin" style="float: none;">
+                <a href="https://www.linkedin.com/company/iospress/" target="_blank" class="linkedin">linkedin</a>
+              </li>
+            </ul>
+            <ul class="mobile-disclaimer">
+              <li>
+                <p style="font-size:12px; text-align:left; padding-top: 5px;">
+                  <a href="https://iospress.nl/" target="_blank">&copy; IOS Press | </a>
+                  <a href="http://ld.iospress.nl/license" target="_blank">Disclaimer</a>
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+  <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> -->
+  <script src="js/index.js"></script>
+  <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=loadCaptcha" async defer></script>
+</body>
+
+</html>

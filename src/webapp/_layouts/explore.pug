@@ -1,0 +1,274 @@
+doctype html
+html(lang='en')
+	head
+		title LD Connect - IOS Press
+		link(rel='stylesheet', type='text/css', href='/asset/style/explore.css')
+		link(rel='stylesheet', type='text/css', href='/asset/resource/leaflet.css')
+		link(rel='shortcut icon', href='/favicon.png')
+		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=PT+Sans:400,700%7CPT+Serif:400,700')
+		link(rel='stylesheet prefetch', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/css/common.css')
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css')
+		script(src='/asset/script/explore.js')
+	body
+		header#header.block
+			a#header-skiplink.skiplinks(href='#nav-skiplink')
+				| In header section. Select this link to jump to navigation
+			.container
+				.left_container.col-sm-6.header-mobile-menu(style='padding-left: 0px;')
+					ul
+						li(style='padding-left: 0px;')
+							a(href='/')
+								img.logo(src='/images/LD_Connect_logo.png')
+					a#open-menu.mobile-menu
+						.hamburger-menu-container(onclick='myFunction(this)')
+							.bar1
+							.bar2
+							.bar3
+					script.
+						function toggle_menu(option) {
+							$('#open-menu .hamburger-menu-container').removeClass('change');
+							$('#menu').removeClass('show');
+						}
+						function toggle_open(d_unit) {
+							[...document.querySelectorAll('.dropdown.open')].forEach(d => (d !== d_unit) && d.classList.toggle('open'));
+							d_unit.classList.toggle('open');
+						}
+				#menu.header-menu.clearfix.menu(style='padding: 18px 0;')
+					ul.nav.navbar-nav.navbar-right
+						li.dropdown(onclick="toggle_open(this)")
+							a.dropdown-toggle(data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false')
+								| About
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href='/#About' onclick='toggle_menu(false)') About LD Connect
+								li
+									a(href='/license' target='_blank' onclick='toggle_menu(false)') License
+						li.dropdown(onclick="toggle_open(this)")
+							a.dropdown-toggle(data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false')
+								| Explore
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href='/browse/#iospress-organization:Publisher.IOS_Press' target='_blank' onclick='toggle_menu(false)') Explore Dataset
+								li
+									a(href='/query-interface/' target='_blank' onclick='toggle_menu(false)') Query Interface
+
+						li.dropdown(onclick="toggle_open(this)")
+							a.dropdown-toggle(data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false')
+								| Tools 
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href='qe/keyword' target='_blank' onclick='toggle_menu(false)') Keyword Expansion
+								li
+									a(href='/qe/paper' target='_blank' onclick='toggle_menu(false)') Similar Papers
+								li
+									a(href='/qe/abstract' target='_blank' onclick='toggle_menu(false)') Paper Search
+								li
+									a(href='/qe/entity' target='_blank' onclick='toggle_menu(false)') Entity Search
+								li
+									a(href='/qe/reviewer' target='_blank' onclick='toggle_menu(false)') Reviewer Recommender
+
+						li.dropdown(onclick="toggle_open(this)")
+							a.dropdown-toggle(data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false')
+								| Download
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href='/#downloadEmbeddings' onclick='toggle_menu(false)') Download Embeddings
+								li
+									a(href='/#downloadDataset' onclick='toggle_menu(false)') Download Dataset
+						li.dropdown(onclick="toggle_open(this)")
+							a.dropdown-toggle(data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false')
+								| Contact
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href='mailto:editorial@iospress.nl' target='_blank' onclick='toggle_menu()') Contact us
+								li
+									a(href='/#feedback' onclick='toggle_menu()') Feedback
+		#title
+			a(href='http://phuzzy.link/') phuzzy.link
+		#controls
+			div.configs
+				div.sparql
+					div.endpoint
+						div.title
+							span.text SPARQL endpoint URL:
+						div.input
+							input(type='text').url
+					div.prefixes
+						div.title
+							span.text Prefix JSON-LD context:
+						div.input
+							input(type='text').url
+				div.settings
+					div.title
+						span.text Settings:
+				div.plugins
+					div.title
+						span.text Plugins:
+			div.status
+				div.error
+				div.overview
+					div.outgoing
+						span.title Outgoing properties
+						span.text Waiting for initialization...
+					div.incoming
+						span.title Incoming properties
+						span.text Waiting for initialization...
+		#layout
+			section#triples
+				.outgoing
+					.header
+						a.fa.fa-external-link(target='_blank', title='open resource in new tab', href='#')
+						span.text
+						span.source
+							span.access(style="display:none;")
+								span.text RDF source
+								span.icon.fa.fa-code
+							span.spinner
+								span.icon.fa.fa-spin.fa-circle-o-notch
+					#machine.hide
+						div#rdf-format
+							div.graphy
+								div.title Generate from SELECT results
+								div.formats
+									div.format(data-mime-format='text/turtle') text/turtle
+									div.format(data-mime-format='application/trig') application/trig
+									div.format(data-mime-format='application/n-triples') application/n-triples
+									div.format(data-mime-format='application/n-quads') application/n-quads
+							div.dereference
+								div.title Dereference URI
+								div.formats
+									div.format(data-mime-format='text/turtle') text/turtle
+									//- div.format(data-mime-format='application/trig') application/trig
+									div.format(data-mime-format='application/n-triples') application/n-triples
+									//- div.format(data-mime-format='application/n-quads') application/n-quads
+									div.format(data-mime-format='application/ld+json') application/ld+json
+									div.format(data-mime-format='application/rdf+xml') application/rdf+xml
+									div.append
+										span.add.fa.fa-plus-square-o
+										input(type='text', placeholder='text/n3')
+						div#rdf-display
+							div#rdf-editor
+							div.page
+							div.curtain
+								div.loading
+									span.fa.fa-spin.fa-3x.fa-link
+					#abstract
+					.body
+						.table
+				.incoming
+					.header
+						span.text Incoming Triples
+					.body.incoming
+						.table
+		.stay-informed
+			.container
+				form#stay-informed-form(method='post' name='stayInformedForm')
+					.row
+						.col-sm-4
+							h4 Stay informed about LD Connect
+						#stay_informed_captcha_container
+						.col-sm-5
+							input#stayInformedEmail(type='text' placeholder='Email' required='')
+						.col-sm-3
+							input#stayInformedBtn.btn.btn-primary(type='submit' value='Submit')
+		footer.footer.footer-menu
+			.container(style='max-width:1200px;')
+				.row
+					.col-xs-3.col-sm-3.left-one
+						#navigation
+							// <label>Navigation</label>
+							ul#site.site_menu
+								li
+									a(href='http://ld.iospress.nl')
+										img.logo(src='/images/LD_Connect_logo_withoutIOSPress.png')
+							ul.disclaimer
+								li
+									// p(style='font-size:12px; text-align:center;')
+									a(href='https://iospress.nl/' target='_blank') &copy; IOS Press | 
+									a(href='/license' target='_blank') Disclaimer
+					.col-xs-7.col-sm-7.middle-one
+						#text1
+							ul.site_menu(id='site site_text')
+								li
+									p.ld-connect-text(style='line-height:1.4em; text-align:left;')
+										b LD Connect
+										|	is the Linked Data Portal of all IOS Press books and journals. We invite you to explore
+										|									 or download our data and welcome your feedback!
+						#text2
+							// <label>Text 2</label>
+							.footer-column.site-map(style='padding:2px')
+								ul
+									li
+										strong About
+									li
+										a(href='/#About' target='_blank') About LD Connect
+									li
+										a(href='/license/' target='_blank') License
+							.footer-column.site-map(style='padding:2px')
+								ul
+									li
+										strong Explore
+									li
+										a(href='#' style='text-decoration: none; cursor: pointer;') Explore Dataset
+									li
+										a(href='/query-interface/' target='_blank' style=' cursor: pointer;') Query Interface
+							.footer-column.site-map(style='padding:2px')
+								ul
+									li
+										strong Tools
+									li
+										a(href='/qe/keyword' target='_blank' style='cursor: pointer;') Keyword Expansion
+									li
+										a(href='/qe/paper' target='_blank' style='cursor: pointer;') Similar Papers
+									li
+										a(href='/qe/abstract' target='_blank' style='cursor: pointer;') Paper Search
+									li
+										a(href='/qe/entity' target='_blank' style='cursor: pointer;') Entity Search
+									li
+										a(href='/qe/reviewer' target='_blank' style='cursor: pointer;') Reviewer Recommender
+							// .footer-column.site-map(style='padding:2px')
+							// 	ul
+							// 		li
+							// 			strong Download
+							// 		li
+							// 			a(href='/#downloadDataset' target='_blank' style='cursor: pointer;') Download Dataset
+							// 		li
+							// 			a(href='/#downloadEmbeddings' target='_blank' style='cursor: pointer;') Download Doc2Vec
+							.footer-column.site-map(style='padding:2px')
+								ul
+									li
+										strong Contact
+									li
+										a(href='mailto:editorial@iospress.nl' style='cursor: pointer;') Contact Us
+									li
+										a(href='/#feedback' target='_blank' style='cursor: pointer;') Feedback
+					.col-xs-2.col-sm-2.right-one
+						#navigation
+							ul(style='list-style:none; padding-top: 35px;')
+								li(style='float: none;')
+									p.powered-by Powered by
+							ul
+								li(style='float: none;')
+									img(src='/images/IOS_Logo_white_RGB.png' style='max-width: 55px;')
+							ul(style='list-style:none;')
+								li Nieuwe Hemweg 6B
+								li 1013 BG Amsterdam
+								li The Netherlands
+							ul.social-links
+								li.widget.facebook
+									a.facebook(href='https://www.facebook.com/publisheriospress/' target='_blank') facebook
+								li.widget.twitter
+									a.twitter(href='https://twitter.com/iospress_stm' target='_blank') twitter
+								li.widget.linkedin
+									a.linkedin(href='https://www.linkedin.com/company/iospress/' target='_blank') linkedin
+							ul.mobile-disclaimer
+								li
+									p(style='font-size:12px; text-align:left; padding-top: 5px;')
+										a(href='https://iospress.nl/' target='_blank') &copy; IOS Press | 
+										a(href='/license' target='_blank') Disclaimer
